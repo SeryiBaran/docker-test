@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  web:
+    user: node
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: base
+    volumes:
+      - ./:/home/node/app/
+      - /home/node/app/node_modules
+    container_name: web
+    expose:
+      - '5173'
+    ports:
+      - '5173:5173'
+    command: npm run dev -- --host
